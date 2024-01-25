@@ -11,6 +11,11 @@ place_amenity = Table('place_amenity',Base.metadata,
                      )
 class Place(BaseModel):
     """ A place to stay """
+
+    if models.storage_t == 'db':
+       amenities = relationship('Amenity',secondary='place_amenity',
+                                backref="place_amenities",viewonly=False)
+    else:
     city_id = ""
     user_id = ""
     name = ""
