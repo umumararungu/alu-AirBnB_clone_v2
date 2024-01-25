@@ -1,14 +1,20 @@
 #!/usr/bin/python3
 """ State Module for HBNB project """
-from models.base_model import BaseModel
-import from Base
+from models.base_model import BaseModel, Base
+import sqlalchemy
+from sqlarchemy import *
+from sqlalchemy.orm import relationship
 
 
 class Amenity(BaseModel):
     """
     class attributes
     """
-    __tablename__ = "amenities"
-    name = Column(String(128), nullbase=False)
-    place_amenities
+    if models.storage_t == 'db':
+        __tablename__ = "amenities"
+        name = Column(String(128), nullbase=False)
+    else:
+        name = ""
+    
+
     
