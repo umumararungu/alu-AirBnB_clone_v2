@@ -4,5 +4,8 @@ from models.base_model import BaseModel
 
 
 class State(BaseModel):
-    """ State class """
-    name = ""
+    """State class"""
+
+    __tablename__ = "states"
+    name = Column(String(128), nullable=False)
+    cities = relationship("City", cascade="all, delete-orphan", backref="state")
