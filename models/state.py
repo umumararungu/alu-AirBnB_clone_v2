@@ -10,18 +10,18 @@ from sqlalchemy.ext.declarative import declarative_base
 from os import getenv
 from .city import City
 
-engine = Create_engine('mysql://hbnb_dev:hbnb_dev_pwd@localhost/hbnb_dev_db')
-session = sessionmaker(bind=engine)()
-
-Base = declarative_base()
-
+    Base = declarative_base()
 
 class State(BaseModel, Base):
     """State class"""
 
+    engine = Create_engine('mysql://hbnb_dev:hbnb_dev_pwd@localhost/hbnb_dev_db')
+    session = sessionmaker(bind=engine)()
+
     __tablename__ = "states"
     name = Column(String(128), nullable=False)
     cities = relationship("City", cascade="all, delete-orphan", backref="state")
+    
 
     if getenv("HBNB_TYPE_STORAGE") != "db":
 
