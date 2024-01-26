@@ -1,4 +1,12 @@
+#!/usr/bin/python3
+"""
+database storage
+"""
+
 class DBStorage:
+    """
+    class properties
+    """
     __engine = None
     __session = None
 
