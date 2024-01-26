@@ -17,6 +17,7 @@ class State(BaseModel, Base):
     """State class"""
 
     engine = create_engine("mysql://hbnb_dev:hbnb_dev_pwd@localhost/hbnb_dev_db")
+
     session = sessionmaker(bind=engine)()
 
     __tablename__ = "states"
