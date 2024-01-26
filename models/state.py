@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """ State Module for HBNB project """
-from sqlalchemy import Create_engine
+from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from models.base_model import BaseModel
 from sqlalchemy import Column, String
@@ -10,7 +10,8 @@ from sqlalchemy.ext.declarative import declarative_base
 from os import getenv
 from .city import City
 
-    Base = declarative_base()
+Base = declarative_base()
+
 
 class State(BaseModel, Base):
     """State class"""
