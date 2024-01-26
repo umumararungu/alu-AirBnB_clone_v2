@@ -16,16 +16,12 @@ Base = declarative_base()
 class State(BaseModel, Base):
     """State class"""
 
-    engine = Create_engine(
-        'mysql://hbnb_dev:hbnb_dev_pwd@localhost/hbnb_dev_db')
+    engine = create_engine("mysql://hbnb_dev:hbnb_dev_pwd@localhost/hbnb_dev_db")
     session = sessionmaker(bind=engine)()
 
     __tablename__ = "states"
     name = Column(String(128), nullable=False)
-    cities = relationship(
-        "City",
-        cascade="all, delete-orphan",
-        backref="state")
+    cities = relationship("City", cascade="all, delete-orphan", backref="state")
 
     if getenv("HBNB_TYPE_STORAGE") != "db":
 
