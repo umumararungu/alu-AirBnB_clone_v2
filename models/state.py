@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """ State Module for HBNB project """
+import models
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from models.base_model import BaseModel
