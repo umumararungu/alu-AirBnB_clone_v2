@@ -1,17 +1,15 @@
 #!/usr/bin/python3
 """This is the state class"""
-from sqlalchemy.orm import DeclarativeBase
 from models.base_model import BaseModel
 from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, String
 import models
 from models.city import City
 import shlex
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 
-class Base(DeclarativeBase):
-    pass
-
-class State(BaseModel, Base):
+class State(BaseModel):
     """This is the class for State
     Attributes:
         name: input name
@@ -35,3 +33,5 @@ class State(BaseModel, Base):
             if elem.state_id == self.id:
                 result.append(elem)
         return result
+engine = create_engine("mysql+mysqldb://hbnb_dev:hbnb_dev_pwd/hbnb_dev_db@localhost")
+Session = sessionmaker(engine)
