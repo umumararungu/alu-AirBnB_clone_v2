@@ -10,7 +10,7 @@ from sqlalchemy import Column, Integer, String, DateTime
 Base = declarative_base()
 
 
-class BaseModel:
+class BaseModel(Base):
     """This class will defines all common attributes/methods
     for other classes
     """
