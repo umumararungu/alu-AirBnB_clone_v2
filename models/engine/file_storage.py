@@ -27,17 +27,14 @@ class FileStorage:
         Return:
             returns a dictionary of __object
         """
-        dic = {}
-        if cls:
-            dictionary = self.__objects
-            for key in dictionary:
-                partition = key.replace(".", " ")
-                partition = shlex.split(partition)
-                if partition[0] == cls.__name__:
-                    dic[key] = self.__objects[key]
-            return dic
-        else:
+        if cls is None:
             return self.__objects
+        else:
+            filtered_obj = {}
+            for key, value in self.__objects.items():
+                if type(value) == cls:
+                    filtered_obj[key] = value
+            return filtered_obj
 
     def new(self, obj):
         """sets __object to given obj
