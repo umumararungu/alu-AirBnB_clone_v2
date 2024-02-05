@@ -1,11 +1,10 @@
 #!/usr/bin/python3
 """This is the state class"""
 import os
-from models.base_model import BaseModel, Base
+from models import storage
+from base_model import BaseModel, Base
 from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, String
-import models
-from models.city import City
 import shlex
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -27,7 +26,7 @@ class State(BaseModel, Base):
 
     @property
     def cities(self):
-        var = models.storage.all()
+        var = storage.all()
         lista = []
         result = []
         for key in var:

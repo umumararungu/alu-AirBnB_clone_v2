@@ -2,6 +2,7 @@
 """This is the base model class for AirBnB"""
 from sqlalchemy.ext.declarative import declarative_base
 import uuid
+from models import storage
 from datetime import datetime
 from sqlalchemy import Column, Integer, String, DateTime
 
@@ -58,8 +59,8 @@ class BaseModel:
     def save(self):
         """updates the public instance attribute updated_at to current"""
         self.updated_at = datetime.now()
-        models.storage.new(self)
-        models.storage.save()
+        storage.new(self)
+        storage.save()
 
     def to_dict(self):
         """creates dictionary of the class  and returns
@@ -76,4 +77,4 @@ class BaseModel:
 
     def delete(self):
         """delete object"""
-        models.storage.delete(self)
+        storage.delete(self)
