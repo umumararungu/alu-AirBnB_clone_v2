@@ -76,18 +76,16 @@ class Place(BaseModel, Base):
         if os.getenv("HBNB_TYPE_STORAGE") == "db"
         else 0
     )
-    latitude = (
-        Column(Float, nullable=True) if os.getenv("HBNB_TYPE_STORAGE") == "db" else 0.0
-    )
-    longitude = (
-        Column(Float, nullable=True) if os.getenv("HBNB_TYPE_STORAGE") == "db" else 0.0
-    )
+    latitude = (Column(Float, nullable=True) if os.getenv(
+        "HBNB_TYPE_STORAGE") == "db" else 0.0)
+    longitude = (Column(Float, nullable=True) if os.getenv(
+        "HBNB_TYPE_STORAGE") == "db" else 0.0)
     amenity_ids = []
     reviews = (
-        relationship("Review", cascade="all, delete, delete-orphan", backref="place")
-        if os.getenv("HBNB_TYPE_STORAGE") == "db"
-        else None
-    )
+        relationship(
+            "Review",
+            cascade="all, delete, delete-orphan",
+            backref="place") if os.getenv("HBNB_TYPE_STORAGE") == "db" else None)
     if os.getenv("HBNB_TYPE_STORAGE") == "db":
         amenities = relationship(
             "Amenity",
@@ -111,7 +109,7 @@ class Place(BaseModel, Base):
         @amenities.setter
         def amenities(self, value):
             """Adds an amenity to this Place"""
-            if type(value) is Amenity:
+            if isinstance(value, Amenity):
                 if value.id not in self.amenity_ids:
                     self.amenity_ids.append(value.id)
 
