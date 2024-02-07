@@ -29,7 +29,7 @@ class TestHBNBCommand(unittest.TestCase):
         except IOError:
             pass
         del cls.HBNB
-        if type(models.storage) == DBStorage:
+        if isinstance(models.storage, DBStorage):
             models.storage._DBStorage__session.close()
 
     def setUp(self):
@@ -82,7 +82,7 @@ class TestHBNBCommand(unittest.TestCase):
             self.HBNB.onecmd("create")
             self.assertEqual("** class name missing **\n", f.getvalue())
 
-    @unittest.skipIf(type(models.storage) == DBStorage, "Testing Storage")
+    @unittest.skipIf(isinstance(models.storage, DBStorage), "Testing Storage")
     def test_create(self):
         with patch("sys.stdout", new=StringIO()) as f:
             self.HBNB.onecmd("create BaseModel")
@@ -130,7 +130,8 @@ class TestHBNBCommand(unittest.TestCase):
             self.HBNB.onecmd("all BaseModel")
             self.assertIn(bm, f.getvalue())
 
-    @unittest.skipIf(type(models.storage) == DBStorage, "Testing DBStorage")
+    @unittest.skipIf(isinstance(models.storage, DBStorage),
+                     "Testing DBStorage")
     def test_show(self):
         with patch("sys.stdout", new=StringIO()) as f:
             self.HBNB.onecmd("show")
@@ -159,7 +160,8 @@ class TestHBNBCommand(unittest.TestCase):
             self.HBNB.onecmd("destroy BaseModel 12345")
             self.assertEqual("** no instance found **\n", f.getvalue())
 
-    @unittest.skipIf(type(models.storage) == DBStorage, "Testing DBStorage")
+    @unittest.skipIf(isinstance(models.storage, DBStorage),
+                     "Testing DBStorage")
     def test_all(self):
         with patch("sys.stdout", new=StringIO()) as f:
             self.HBNB.onecmd("all asdfsdfsd")
@@ -169,7 +171,8 @@ class TestHBNBCommand(unittest.TestCase):
             self.HBNB.onecmd("all State")
             self.assertEqual("[]\n", f.getvalue())
 
-    @unittest.skipIf(type(models.storage) == DBStorage, "Testing DBStorage")
+    @unittest.skipIf(isinstance(models.storage, DBStorage),
+                     "Testing DBStorage")
     def test_update(self):
         with patch("sys.stdout", new=StringIO()) as f:
             self.HBNB.onecmd("update")
@@ -194,7 +197,8 @@ class TestHBNBCommand(unittest.TestCase):
             self.HBNB.onecmd("update User " + my_id + " name")
             self.assertEqual("** value missing **\n", f.getvalue())
 
-    @unittest.skipIf(type(models.storage) == DBStorage, "Testing DBStorage")
+    @unittest.skipIf(isinstance(models.storage, DBStorage),
+                     "Testing DBStorage")
     def test_z_all(self):
         with patch("sys.stdout", new=StringIO()) as f:
             self.HBNB.onecmd("asdfsdfsd.all()")
@@ -203,7 +207,8 @@ class TestHBNBCommand(unittest.TestCase):
             self.HBNB.onecmd("State.all()")
             self.assertEqual("[]\n", f.getvalue())
 
-    @unittest.skipIf(type(models.storage) == DBStorage, "Testing DBStorage")
+    @unittest.skipIf(isinstance(models.storage, DBStorage),
+                     "Testing DBStorage")
     def test_z_count(self):
         with patch("sys.stdout", new=StringIO()) as f:
             self.HBNB.onecmd("asdfsdfsd.count()")
@@ -228,7 +233,8 @@ class TestHBNBCommand(unittest.TestCase):
             self.HBNB.onecmd("User.destroy(12345)")
             self.assertEqual("** no instance found **\n", f.getvalue())
 
-    @unittest.skipIf(type(models.storage) == DBStorage, "Testing DBStorage")
+    @unittest.skipIf(isinstance(models.storage, DBStorage),
+                     "Testing DBStorage")
     def test_update(self):
         with patch("sys.stdout", new=StringIO()) as f:
             self.HBNB.onecmd("sldkfjsl.update()")
