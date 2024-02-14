@@ -1,38 +1,35 @@
-import unittest
-import MySQLdb
+#!/usr/bin/python3
+""" Deploy static, task 2. Deploy archive!
+"""
+from fabric.api import env, put, run
+from os import path
 
-class TestDatabaseFunctionality(unittest.TestCase):
-    def setUp(self):
-        # Connect to the test database
-        self.conn = MySQLdb.connect(
-            user='hbnb_test',
-            password='hbnb_test_pwd',
-            host='localhost',
-            database='hbnb_test_db'
-        )
-        self.cursor = self.conn.cursor()
+env.hosts = ["3.88.91.124", "54.208.153.0"]
+env.user = "ubuntu"
 
-    def tearDown(self):
-        # Close the database connection
-        self.cursor.close()
-        self.conn.close()
 
-    def test_create_state(self):
-        # Get the initial number of records in the states table
-        self.cursor.execute("SELECT COUNT(*) FROM states")
-        initial_count = self.cursor.fetchone()[0]
+def do_deploy(archive_path):
+    """Distributes a .tgz archive from the contents of `web_static/` in alu-airbnb_v2 repo to the web servers
 
-        # Execute the action (e.g., create a new state)
-        # Assume that you have a function to create a state in your application
-        create_state_function()  # Replace with the actual function call
+    Retruns:
+        (bool): `True` if all operations successful, `False` otherwise
+    """
+    if not path.exists(archive_path) or archive_path is None:
+        return False
 
-        # Get the number of records in the states table again
-        self.cursor.execute("SELECT COUNT(*) FROM states")
-        final_count = self.cursor.fetchone()[0]
+    f_name = path.basename(archive_path)
+    d_name = f_name.split(".")[0]
 
-        # Validate the action
-        self.assertEqual(final_count, initial_count + 1, "New state was not created")
+    put(local_path=archive_path, remote_path="/tmp/")
+    run("mkdir -p /data/web_static/releases/{}/".format(d_name))
+    run("tar -xzf /tmp/{} -C /data/web_static/releases/{}/".format(f_name, d_name))
+    run("rm /tmp/{}".format(f_name))
+    run(
+        "mv /data/web_static/releases/{}/web_static/* ".format(d_name)
+        + "/data/web_static/releases/{}/".format(d_name)
+    )
+    run("rm -rf /data/web_static/releases/{}/web_static".format(d_name))
+    run("rm -rf /data/web_static/current")
+    run("ln -s /data/web_static/releases/{}/ /data/web_static/current".format(d_name))
 
-if __name__ == '__main__':
-    unittest.main()
-
+    return True
