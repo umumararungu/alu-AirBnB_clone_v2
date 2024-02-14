@@ -9,7 +9,8 @@ env.user = "ubuntu"
 
 
 def do_deploy(archive_path):
-    """Distributes a .tgz archive from the contents of `web_static/` in alu-airbnb_v2 repo to the web servers
+    """Distributes a .tgz archive from the contents of `web_static/`
+    in alu-airbnb_v2 repo to the web servers
 
     Retruns:
         (bool): `True` if all operations successful, `False` otherwise
