@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Deploy static, task 2. Deploy archive!
+""" Deploy static
 """
 from fabric.api import env, put, run
 from os import path
