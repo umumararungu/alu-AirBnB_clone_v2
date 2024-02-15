@@ -7,7 +7,7 @@ import os
 
 
 def do_pack():
-    """Generates a .tgz archive from the contents of the web_static folder"""
+    """Generates a .tgz archive from the contents"""
     date = datetime.now().strftime("%Y%m%d%H%M%S")
     try:
         if not os.path.exists("versions"):
