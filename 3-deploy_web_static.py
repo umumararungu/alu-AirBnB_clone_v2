@@ -5,7 +5,9 @@ import MySQLdb
 
 class TestDatabaseFunctionality(unittest.TestCase):
     def setUp(self):
-        """Connect to the test database"""
+        """
+        Connect to the test database
+        """
         self.conn = MySQLdb.connect(
             user='hbnb_test',
             password='hbnb_test_pwd',
@@ -15,17 +17,21 @@ class TestDatabaseFunctionality(unittest.TestCase):
         self.cursor = self.conn.cursor()
 
     def tearDown(self):
-       """Close the database connection"""
+       """
+       Close the database connection
+       """
         self.cursor.close()
         self.conn.close()
 
     def test_create_state(self):
-        """ Get the initial number of records in the states table """
+        """
+        Get the initial number of records in the states table
+        """
         self.cursor.execute("SELECT COUNT(*) FROM states")
         initial_count = self.cursor.fetchone()[0]
         
-        create_state_function()  # Replace with the actual function call
-
+        create_state_function()  
+        
         self.cursor.execute("SELECT COUNT(*) FROM states")
         final_count = self.cursor.fetchone()[0]
         
