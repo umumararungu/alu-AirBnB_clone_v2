@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """second task"""
-from flask import Flask, escape
+from flask import Flask
+from markupsafe import escape
 
 app = Flask(__name__)
 
