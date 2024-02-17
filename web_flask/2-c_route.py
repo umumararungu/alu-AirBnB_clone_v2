@@ -16,6 +16,7 @@ def hbnb():
     """second page"""
     return "HBNB"
 
+
 @app.route("/c/<text>", strict_slashes=False)
 def C_fun(text):
     """C page"""
