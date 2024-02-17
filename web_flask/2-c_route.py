@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 """second task"""
 from flask import Flask
-from urllib.parse import unquote
+from markupsafe import escape
+
 
 app = Flask(__name__)
 
@@ -22,9 +23,7 @@ def hbnb():
 def C_fun(text):
     """C page"""
 
-    text = unquote(text)
-    text = text.replace('_', ' ')
-    return f'C {text}'
+    return f"C, {escape(text)}!"
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
