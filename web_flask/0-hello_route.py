@@ -1,9 +1,7 @@
 #!/usr/bin/python3
-#new one
+""""new thing"""
 from flask import Flask
-""""
-new thing
-"""
+
 app = Flask(__name__)
 
 @app.route("/")
