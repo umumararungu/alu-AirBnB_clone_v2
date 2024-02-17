@@ -20,9 +20,9 @@ def hbnb():
 @app.route("/c/<text>", strict_slashes=False)
 def C_fun(text):
     """C page"""
-    # text = escape(text.replace('_', ' '))
+    text = escape(text.replace('_', ' '))
 
-    # return f'C,{text}'
+    return f'C,{text}'
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
