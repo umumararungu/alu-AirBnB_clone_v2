@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""""new thing"""
+"""second task"""
 from flask import Flask
 
 app = Flask(__name__)
@@ -7,16 +7,12 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello_world():
-    """
-    first page
-    """
+    """first page"""
     return "Hello HBNB!"
 
 @app.route("/hbnb")
 def hello_world():
-    """
-    first page
-    """
+    """second page"""
     return "HBNB"
 
 if __name__ == '__main__':
