@@ -49,9 +49,9 @@ def html_file(n):
 @app.route("/number_odd_or_even/<int:n>", strict_slashes=False)
 def odd_even(n):
     """Html page"""
-    if n%2 == 0:
-        return render_template('6-number_odd_or_even.html', number=n,check="even")
+    if n % 2 == 0:
+        return render_template('6-number_odd_or_even.html', number=n, check="even")
     elif n%2 != 0:
-                return render_template('6-number_odd_or_even.html', number=n,check="odd")
+        return render_template('6-number_odd_or_even.html', number=n, check="odd")
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
