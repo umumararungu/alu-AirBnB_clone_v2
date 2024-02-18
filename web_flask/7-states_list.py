@@ -8,7 +8,6 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 app = Flask(__name__)
 
 
-
 @app.teardown_appcontext
 def teardown_db(exception):
     """Closes the database again at the end of the request."""
@@ -26,7 +25,6 @@ def states_list():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
-
 
 
 if __name__ == '__main__':
