@@ -24,7 +24,7 @@ def C_fun(text):
     text = text.replace('_', ' ')
     return 'C {}'.format(text)
 
-
+@app.route("/python", strict_slashes=False)
 @app.route("/python/<text>", strict_slashes=False)
 def Python_fun(text):
     """C page"""
