@@ -51,7 +51,7 @@ def odd_even(n):
     """Html page"""
     if n % 2 == 0:
         return render_template('6-number_odd_or_even.html',
-                                number=n, check="even")
+                               number=n, check="even")
     elif n % 2 != 0:
         return render_template('6-number_odd_or_even.html',
                                number=n, check="odd")
