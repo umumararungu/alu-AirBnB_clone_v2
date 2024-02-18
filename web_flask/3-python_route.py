@@ -27,8 +27,9 @@ def C_fun(text):
 @app.route("/python/<text>", strict_slashes=False)
 def Python_fun(text):
     """C page"""
+    default_test = 'Python is cool'
     if text == 0 :
-        return 'Python is cool'
+        return default_test
     else:
         text = text.replace('_', ' ')
         return 'Python {}'.format(text)
