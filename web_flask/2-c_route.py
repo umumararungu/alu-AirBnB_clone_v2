@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """second task"""
-from flask import Flask
+from flask import Flask, render_template
+
 
 
 app = Flask(__name__)
@@ -21,8 +22,9 @@ def hbnb():
 @app.route("/c/<text>", strict_slashes=False)
 def C_fun(text):
     """C page"""
-    text_1 = text.replace('_', ' ') 
-    return f"C, {text_1}"
+    text = text.replace('_', ' ')
+    return 'C {}'.format(text)
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
